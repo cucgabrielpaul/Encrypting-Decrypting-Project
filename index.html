@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Encrypting/Decrypting Project</title>
+    <link rel="stylesheet" href="/style.css">
+    <script defer src="/script.js"></script>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h1>Cipher</h1>
+
+        <section class="message-box">
+            <h3>Enter your message here</h3>
+            <input type="text" name="message" class="messageInput" placeholder="Very secret message" value="">
+        </section>
+
+        <section class="code-box">
+            <h3>Enter secret code</h3>
+            <input type="text" name="code" class="keyInput" placeholder="Key" value="">
+            <div class="code-buttons">
+                <button class="first-button">Encrypt</button>
+                <button class="second-button">Decrypt</button>
+            </div>
+        </section>
+
+        <section class="decrypted-box">
+            <h3>Your decrypted message:</h3>
+            <input type="text" name="decrypted" class="decryptedInput" placeholder="VERY SECRET MESSAGE" readonly="readonly">
+            <button>Copy Text</button>
+        </section>
+
+    </div>
+
+</body>
+
+</html>

@@ -1,0 +1,57 @@
+:root {
+    --container-color: CornflowerBlue;
+    --button-color: rgb(56, 37, 161);
+}
+
+body {
+    background-color: var(--container-color);
+    margin: 40px;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+}
+
+.message-box,
+.code-box,
+.decrypted-box {
+    display: flex;
+    flex-direction: column;
+}
+
+h1 {
+    text-align: center;
+}
+
+input {
+    display: block;
+    border-radius: 10px;
+    height: 60px;
+}
+
+button {
+    height: 40px;
+    background-color: var(--button-color);
+    border-width: 1px;
+    border-radius: 5px;
+}
+
+.code-buttons {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.code-buttons>button {
+    width: 50%;
+}
+
+@media (max-width: 300px) {
+    .code-buttons {
+        display: block;
+        flex-wrap: wrap;
+    }
+    .code-buttons>button {
+        width: 100%;
+    }
+}

@@ -1,57 +1,48 @@
-//"use strict";
+"use strict";
 
-let characters = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", ".", ",", "?", "!", "'", "_", "-", "&", "@", "#", "$", "%", "*", "(", ")", " "];
+//Elements declaration
+let characters = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "K", "J", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", ".", ",", "?", "!", "'", "_", "-", "&", "@", "#", "$", "%", "*", "(", ")", " "];
 let encryptButton = document.querySelector(".first-button");
 let decryptButton = document.querySelector(".second-button");
-let copyTextButton = document.querySelector(".decrypted-box button");
-let messageInput = document.querySelector(".messageInput").value.toUpperCase();
-let keyInput = document.querySelector(".keyInput").value.toUpperCase();
+let copyTextButton = document.querySelector(".third-button");
+let decryptedInput = document.querySelector(".decryptedInput");
+let messageInput = document.querySelector(".messageInput");
+let keyInput = document.querySelector(".keyInput");
 
 //Input validation with RegEx
 let inputValidation = (inputValue) => {
     let regEx = /([A-Z]|[a-z]|[0-9]|[.,?!'_&@#$%*() -])/g;
+    let validationArray = inputValue.match(regEx);
+    let output;
 
-    inputValue.match(regEx) !== null ?
-        console.log("True", inputValue.match(regEx), [...messageInput]) :
-        console.log("False", inputValue.match(regEx), [...messageInput]);
+    validationArray != null && validationArray.length === [...inputValue].length ? output = [...inputValue] : alert(`Invalid message or key`);
 };
-inputValidation(messageInput.toUpperCase());
 
-//Input validation with forEach
-let inputValidation2 = (inputValue) => {
-    console.log(inputValue)
-    inputValue.forEach((element) => {
-        let letterValid = characters.find((item) => item == element);
-        //letterValid !== undefined ? console.log("true") : console.log("false");
+let encryptMessage = (InputMessage, InputKey, whitchButton) => {
+    let validateMessages = `${InputMessage}${InputKey}`;
+    inputValidation(validateMessages);
+
+    let encryptCode = [...InputMessage].map((item, index) => {
+        let messageIndex = characters.indexOf(item);
+        let keyIndex = characters.indexOf(InputKey[index % InputKey.length]);
+
+        if (whitchButton == "Encrypt") {
+            return characters[(messageIndex + keyIndex) % characters.length];
+        } else if (whitchButton == "Decrypt") {
+            let decryptedIndex = messageIndex - keyIndex;
+            if (decryptedIndex < 0) decryptedIndex += characters.length;
+            return characters[decryptedIndex];
+        }
     });
+    decryptedInput.value = encryptCode.join("");
 };
 
-let encryptMessage = (messageInput, keyInput) => {
-    let validateMessages = [...messageInput, ...keyInput]
+encryptButton.addEventListener("click", () => encryptMessage(messageInput.value.toUpperCase(), keyInput.value.toUpperCase(), encryptButton.getAttribute("name")));
 
-    inputValidation2(validateMessages);
+decryptButton.addEventListener("click", () => encryptMessage(messageInput.value.toUpperCase(), keyInput.value.toUpperCase(), decryptButton.getAttribute("name")));
 
-    console.log(messageInput, keyInput, validateMessages)
-        /* let messageInputValue = messageInput.value;
-        let messageInputIndex = messageInputValue.indexOf('b')
-        let keyInputValue = messageInput.value;
-        let keyInputIndex = keyInputValue.indexOf()
-        messageInputValue.split("").forEach((element, index) => {
-            console.log(element, index, characters.find((felement, findex, farray) => felement == element.toUpperCase())) 
-
-        })*/
-}
-encryptButton.addEventListener("click", () => encryptMessage(messageInput, keyInput));
-
-let decryptMessage = (messageInput, keyInput) => {
-    console.log(messageInput, keyInput);
-}
-decryptButton.addEventListener("click", () => decryptMessage(messageInput, keyInput));
-
-//Copy text from Your decrypted message input
+//Copy text from "Your decrypted message" input
 let copyTextEvent = () => {
-    let copyText = document.querySelector(".decryptedInput");
-    copyText.select();
-    navigator.clipboard.writeText(copyText.value);
-}
+    navigator.clipboard.writeText(decryptedInput.value);
+};
 copyTextButton.addEventListener("click", copyTextEvent);

@@ -2,42 +2,36 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Encrypting/Decrypting Project</title>
-    <link rel="stylesheet" href="/style.css">
-    <script defer src="/script.js"></script>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Encrypting Project</title>
+    <link rel="shortcut icon" type="image/x-icon" href="/img/Logo.gif" />
+    <link rel="stylesheet" href="/style.css" />
 </head>
 
 <body>
-
     <div class="container">
+        <h1>Encrypt message</h1>
 
-        <h1>Cipher</h1>
+        <div class="form-box">
+            <label>Enter your message here:</label>
+            <input type="text" class="messageInput" placeholder="Very secret message" />
 
-        <section class="message-box">
-            <h3>Enter your message here</h3>
-            <input type="text" name="message" class="messageInput" placeholder="Very secret message" value="">
-        </section>
-
-        <section class="code-box">
-            <h3>Enter secret code</h3>
-            <input type="text" name="code" class="keyInput" placeholder="Key" value="">
+            <label>Enter secret code:</label>
+            <input type="text" class="keyInput" placeholder="Key" />
             <div class="code-buttons">
-                <button class="first-button">Encrypt</button>
-                <button class="second-button">Decrypt</button>
+                <button class="first-button" name="Encrypt">Encrypt</button>
+                <button class="second-button" name="Decrypt">Decrypt</button>
             </div>
-        </section>
 
-        <section class="decrypted-box">
-            <h3>Your decrypted message:</h3>
-            <input type="text" name="decrypted" class="decryptedInput" placeholder="VERY SECRET MESSAGE" readonly="readonly">
-            <button>Copy Text</button>
-        </section>
-
+            <label>Your decrypted message:</label>
+            <input type="text" class="decryptedInput" value="VERY SECRET MESSAGE" readonly />
+            <button class="third-button">Copy Text</button>
+        </div>
     </div>
 
+    <script defer src="/script.js"></script>
 </body>
 
 </html>

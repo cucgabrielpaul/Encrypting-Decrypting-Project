@@ -16,18 +16,18 @@
 
         <div class="form-box">
             <label>Enter your message here:</label>
-            <input type="text" class="messageInput" placeholder=" Very secret message" />
+            <input type="text" class="messageInput" required placeholder=" Very secret message" />
 
             <label>Enter secret code:</label>
-            <input type="text" class="keyInput" placeholder=" Key" />
+            <input type="text" class="keyInput" required placeholder=" Key" />
             <div class="code-buttons">
-                <button class="first-button" name="Encrypt">Encrypt</button>
-                <button class="second-button" name="Decrypt">Decrypt</button>
+                <button class="encrypt-button" name="Encrypt">Encrypt</button>
+                <button class="decrypt-button" name="Decrypt">Decrypt</button>
             </div>
 
             <label>Your decrypted message:</label>
             <input type="text" class="decryptedInput" placeholder=" VERY SECRET MESSAGE" readonly />
-            <button class="third-button">Copy Text</button>
+            <button class="copy-button">Copy Text</button>
         </div>
     </div>
 

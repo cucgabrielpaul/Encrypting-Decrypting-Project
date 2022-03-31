@@ -55,63 +55,50 @@ let characters = [
     ")",
     " ",
 ];
-let encryptButton = document.querySelector(".first-button");
-let decryptButton = document.querySelector(".second-button");
-let copyTextButton = document.querySelector(".third-button");
+let encryptButton = document.querySelector(".encrypt-button");
+let decryptButton = document.querySelector(".decrypt-button");
+let copyTextButton = document.querySelector(".copy-button");
 let decryptedInput = document.querySelector(".decryptedInput");
 let messageInput = document.querySelector(".messageInput");
 let keyInput = document.querySelector(".keyInput");
 
 //Input validation with RegEx
 let inputValidation = (inputValue) => {
-    let regEx = /([A-Z]|[a-z]|[0-9]|[.,?!'_&@#$%*() -]|^)/g;
+    let regEx = /([A-Z]|[a-z]|[0-9]|[.,?!'_&@#$%*() -])/g;
     let validationArray = inputValue.match(regEx);
-    let output;
 
-    messageInput.value !== "" &&
-        keyInput.value !== "" &&
-        validationArray !== null &&
-        validationArray.length === [...inputValue].length ?
-        (output = [...inputValue]) :
-        alert(`Invalid message, key or empty input!`);
-
+    return inputValue !== "" && JSON.stringify(validationArray) == JSON.stringify([...inputValue]) ? true : false;
 };
 
 let encryptMessage = (InputMessage, InputKey, whitchButton) => {
-    let validateMessages = `${InputMessage}${InputKey}`;
 
-    inputValidation(validateMessages);
+    if (inputValidation(InputMessage) && inputValidation(InputKey)) {
+        let encryptCode = [...InputMessage].map((item, index) => {
+            let messageIndex = characters.indexOf(item);
+            let keyIndex = characters.indexOf(InputKey[index % InputKey.length]);
 
-    let encryptCode = [...InputMessage].map((item, index) => {
-        let messageIndex = characters.indexOf(item);
-        let keyIndex = characters.indexOf(InputKey[index % InputKey.length]);
-
-        if (whitchButton == "Encrypt") {
-            return characters[(messageIndex + keyIndex) % characters.length];
-        } else if (whitchButton == "Decrypt") {
-            let decryptedIndex = messageIndex - keyIndex;
-            if (decryptedIndex < 0) decryptedIndex += characters.length;
-            return characters[decryptedIndex];
-        }
-    });
-
-    decryptedInput.value = encryptCode.join("");
+            if (whitchButton == "Encrypt") {
+                return characters[(messageIndex + keyIndex) % characters.length];
+            } else if (whitchButton == "Decrypt") {
+                let decryptedIndex = messageIndex - keyIndex;
+                if (decryptedIndex < 0) decryptedIndex += characters.length;
+                return characters[decryptedIndex];
+            }
+        });
+        return (decryptedInput.value = encryptCode.join(""));
+    } else {
+        alert(`Invalid message, key or empty input!`);
+        decryptedInput.value = "";
+        return;
+    }
 };
 
 encryptButton.addEventListener("click", () =>
-    encryptMessage(
-        messageInput.value.toUpperCase(),
-        keyInput.value.toUpperCase(),
-        encryptButton.getAttribute("name")
-    )
+    encryptMessage(messageInput.value.toUpperCase(), keyInput.value.toUpperCase(), encryptButton.getAttribute("name"))
 );
 
 decryptButton.addEventListener("click", () =>
-    encryptMessage(
-        messageInput.value.toUpperCase(),
-        keyInput.value.toUpperCase(),
-        decryptButton.getAttribute("name")
-    )
+    encryptMessage(messageInput.value.toUpperCase(), keyInput.value.toUpperCase(), decryptButton.getAttribute("name"))
 );
 
 //Copy text from "Your decrypted message" input

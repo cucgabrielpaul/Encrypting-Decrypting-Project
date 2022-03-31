@@ -27,8 +27,8 @@ body {
         }
         .code-buttons {
             display: flex;
-            .first-button,
-            .second-button {
+            .encrypt-button,
+            .decrypt-button {
                 width: 50%;
             }
         }
@@ -41,7 +41,7 @@ body {
             border-radius: 5px;
             margin: 10px 0;
         }
-        .third-button {
+        .copy-button {
             width: 100%;
         }
     }
@@ -50,8 +50,8 @@ body {
 @media (max-width: 425px) {
     .code-buttons {
         flex-wrap: wrap;
-        .first-button,
-        .second-button {
+        .encrypt-button,
+        .decrypt-button {
             width: 100% !important;
         }
     }

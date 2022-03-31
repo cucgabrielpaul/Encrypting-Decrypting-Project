@@ -29,8 +29,8 @@ body .container input {
 body .container .code-buttons {
   display: flex;
 }
-body .container .code-buttons .first-button,
-body .container .code-buttons .second-button {
+body .container .code-buttons .encrypt-button,
+body .container .code-buttons .decrypt-button {
   width: 50%;
 }
 body .container button {
@@ -42,7 +42,7 @@ body .container button {
   border-radius: 5px;
   margin: 10px 0;
 }
-body .container .third-button {
+body .container .copy-button {
   width: 100%;
 }
 
@@ -50,8 +50,8 @@ body .container .third-button {
   .code-buttons {
     flex-wrap: wrap;
   }
-  .code-buttons .first-button,
-.code-buttons .second-button {
+  .code-buttons .encrypt-button,
+.code-buttons .decrypt-button {
     width: 100% !important;
   }
 }
